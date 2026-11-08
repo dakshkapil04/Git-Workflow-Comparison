@@ -1,1 +1,2 @@
-"Change by Developer A" 
+Conflict resolved successfully.
+Both developers' changes have been reviewed and integrated.
