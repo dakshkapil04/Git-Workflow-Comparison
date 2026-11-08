@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple dashboard comparing Git Flow, GitHub Flow and Trunk-Based Development.">
+  <title>Git Workflow Comparison System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">G</span><div><strong>Git Workflow Lab</strong><small>DevOps comparative study</small></div></div>
+    <span class="status"><i></i> Local project dashboard</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">DEVOPS PROJECT / PERFORMANCE ANALYSIS</p>
+        <h1>Compare development workflows.</h1>
+        <p class="intro">Explore how branching strategies influence integration speed, collaboration, merge conflicts and deployment reliability.</p>
+      </div>
+      <div class="hero-note"><span>3</span><small>workflows<br>under study</small></div>
+    </section>
+
+    <section class="workflow-grid" aria-label="Workflow descriptions">
+      <article class="workflow-card">
+        <div class="card-top"><span class="workflow-icon purple">GF</span><span class="tag">Release-oriented</span></div>
+        <h2>Git Flow</h2>
+        <p>Uses dedicated develop, feature, release and hotfix branches to organize planned releases.</p>
+        <div class="branch-list"><span>main</span><span>develop</span><span>feature/*</span><span>release/*</span><span>hotfix/*</span></div>
+      </article>
+      <article class="workflow-card">
+        <div class="card-top"><span class="workflow-icon blue">GH</span><span class="tag">PR-oriented</span></div>
+        <h2>GitHub Flow</h2>
+        <p>Uses short-lived branches and pull requests to review and merge changes into main.</p>
+        <div class="branch-list"><span>main</span><span>feature/*</span><span>pull request</span><span>deploy</span></div>
+      </article>
+      <article class="workflow-card">
+        <div class="card-top"><span class="workflow-icon green">TB</span><span class="tag">Continuous integration</span></div>
+        <h2>Trunk-Based</h2>
+        <p>Integrates small changes into a shared trunk frequently, supported by automated tests.</p>
+        <div class="branch-list"><span>main / trunk</span><span>short-lived branch*</span><span>frequent integration</span></div>
+      </article>
+    </section>
+
+    <section class="section-heading">
+      <div><p class="eyebrow">EXPERIMENT RESULTS</p><h2>Performance overview</h2></div>
+      <p class="muted">Illustrative starter values are labelled. Replace them with your own measured experiment results.</p>
+    </section>
+
+    <section class="metric-grid" id="metricCards" aria-live="polite"></section>
+
+    <section class="panel">
+      <div class="panel-heading"><div><p class="eyebrow">SIDE-BY-SIDE ANALYSIS</p><h2>Metric comparison</h2></div><span class="tag">Lower is better for conflicts, time and failure rate</span></div>
+      <div class="chart-grid">
+        <div class="chart-box"><h3>Merge conflicts</h3><canvas id="conflictChart" width="560" height="260" role="img" aria-label="Bar chart comparing merge conflicts"></canvas></div>
+        <div class="chart-box"><h3>Integration time (hours)</h3><canvas id="integrationChart" width="560" height="260" role="img" aria-label="Bar chart comparing integration time"></canvas></div>
+        <div class="chart-box"><h3>Commits per developer per day</h3><canvas id="commitChart" width="560" height="260" role="img" aria-label="Bar chart comparing commit frequency"></canvas></div>
+        <div class="chart-box"><h3>Deployment failure rate (%)</h3><canvas id="failureChart" width="560" height="260" role="img" aria-label="Bar chart comparing deployment failure rate"></canvas></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading"><div><p class="eyebrow">YOUR EXPERIMENT DATA</p><h2>Update measured results</h2></div><span class="tag">Saved in this browser</span></div>
+      <p class="muted form-intro">Enter values collected during your tests. Use the same number of feature tasks, developers and observation period for each workflow to make the comparison fair.</p>
+      <form id="metricsForm">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Metric</th><th>Git Flow</th><th>GitHub Flow</th><th>Trunk-Based</th></tr></thead>
+            <tbody>
+              <tr><th>Merge conflicts (count)</th><td><input name="gitFlow.conflicts" type="number" min="0" step="1" required></td><td><input name="githubFlow.conflicts" type="number" min="0" step="1" required></td><td><input name="trunkBased.conflicts" type="number" min="0" step="1" required></td></tr>
+              <tr><th>Integration time (hours)</th><td><input name="gitFlow.integrationHours" type="number" min="0" step="0.1" required></td><td><input name="githubFlow.integrationHours" type="number" min="0" step="0.1" required></td><td><input name="trunkBased.integrationHours" type="number" min="0" step="0.1" required></td></tr>
+              <tr><th>Commits / developer / day</th><td><input name="gitFlow.commitsPerDay" type="number" min="0" step="0.1" required></td><td><input name="githubFlow.commitsPerDay" type="number" min="0" step="0.1" required></td><td><input name="trunkBased.commitsPerDay" type="number" min="0" step="0.1" required></td></tr>
+              <tr><th>PR review time (hours)</th><td><input name="gitFlow.reviewHours" type="number" min="0" step="0.1" required></td><td><input name="githubFlow.reviewHours" type="number" min="0" step="0.1" required></td><td><input name="trunkBased.reviewHours" type="number" min="0" step="0.1" required></td></tr>
+              <tr><th>Failed deployments (count)</th><td><input name="gitFlow.failedDeployments" type="number" min="0" step="1" required></td><td><input name="githubFlow.failedDeployments" type="number" min="0" step="1" required></td><td><input name="trunkBased.failedDeployments" type="number" min="0" step="1" required></td></tr>
+              <tr><th>Total deployments (count)</th><td><input name="gitFlow.totalDeployments" type="number" min="1" step="1" required></td><td><input name="githubFlow.totalDeployments" type="number" min="1" step="1" required></td><td><input name="trunkBased.totalDeployments" type="number" min="1" step="1" required></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="form-actions"><button class="button primary" type="submit">Save and update dashboard</button><button class="button secondary" type="button" id="resetButton">Reset sample data</button><button class="button secondary" type="button" id="exportButton">Export results JSON</button></div>
+        <p id="formMessage" class="form-message" role="status"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading"><div><p class="eyebrow">INTERPRETATION</p><h2>How to read the metrics</h2></div></div>
+      <div class="explain-grid">
+        <div><h3>Merge conflicts</h3><p>Count conflicts encountered during merges. Record only actual conflict events using the same counting rule in every experiment.</p></div>
+        <div><h3>Integration time</h3><p>Measure elapsed time from the first task commit until that task is successfully integrated into the shared target branch.</p></div>
+        <div><h3>Commit frequency</h3><p>Divide the number of meaningful commits by the number of developers and experiment days.</p></div>
+        <div><h3>Collaboration efficiency</h3><p>Use pull-request review time as a simple proxy. Also discuss hand-offs, review quality and coordination qualitatively.</p></div>
+        <div><h3>Deployment failure rate</h3><p>Failed deployment attempts divided by total deployment attempts, multiplied by 100. Define failure consistently.</p></div>
+      </div>
+    </section>
+
+    <footer><span>Git Workflow Lab</span><span>Educational experiment · Replace sample data with measured results</span></footer>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+</html>

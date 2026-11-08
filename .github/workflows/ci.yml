@@ -1,0 +1,27 @@
+name: Static project checks
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js for syntax checks
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax
+        run: node --check js/script.js
+      - name: Verify required project files
+        run: |
+          test -f index.html
+          test -f css/style.css
+          test -f js/script.js
+          test -f data/metrics.json
+      - name: Validate sample JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('data/metrics.json', 'utf8')); console.log('JSON is valid')"

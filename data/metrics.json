@@ -1,0 +1,27 @@
+{
+  "notice": "Illustrative sample data only. Replace with measured experiment results.",
+  "gitFlow": {
+    "conflicts": 8,
+    "integrationHours": 12,
+    "commitsPerDay": 4,
+    "reviewHours": 6,
+    "failedDeployments": 3,
+    "totalDeployments": 20
+  },
+  "githubFlow": {
+    "conflicts": 5,
+    "integrationHours": 5,
+    "commitsPerDay": 8,
+    "reviewHours": 3,
+    "failedDeployments": 2,
+    "totalDeployments": 20
+  },
+  "trunkBased": {
+    "conflicts": 2,
+    "integrationHours": 2,
+    "commitsPerDay": 15,
+    "reviewHours": 1,
+    "failedDeployments": 1,
+    "totalDeployments": 20
+  }
+}
